@@ -18,10 +18,8 @@ class Account(models.Model):
     member_since = models.DateField(auto_now_add=True)
     cash = models.DecimalField(max_digits=10, decimal_places=2, default=250000)
 
-'''
-    TODO - Move the following lines of code to signals.py file, if time permits
-           The code failed during initial testing in signals.py file
-'''
+# TODO - Move the 'create_user_account' function to signals.py file, if time permits.
+#        The code failed during initial testing in signals.py file
 
 @receiver(post_save, sender=User)
 def create_user_account(sender, instance, created, **kwargs):

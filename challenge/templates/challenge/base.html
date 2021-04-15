@@ -13,7 +13,7 @@
     <div class="container">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 link-dark">Home</a></li>
+                <li><a href="{% url 'home' %}" class="nav-link px-2 link-dark">Home</a></li>
                 {%  if user.is_authenticated %}
                     <li><a href="#" class="nav-link px-2 link-dark">Dashboard</a></li>
                     <li><a href="#" class="nav-link px-2 link-dark">Portfolio</a></li>
@@ -23,8 +23,10 @@
             </ul>
 
             <div class="col-md-3 text-end">
-                {% if not user.is_authenticated %}
-                    <a href="#"><button type="button" class="btn btn-outline-primary me-2">Login</button></a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}"><button type="button" class="btn btn-primary">Logout</button></a>
+                {% else %}
+                    <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-primary me-2">Login</button></a>
                     <a href="{% url 'signup' %}"><button type="button" class="btn btn-primary">Sign-up</button></a>
                 {% endif %}
             </div>
